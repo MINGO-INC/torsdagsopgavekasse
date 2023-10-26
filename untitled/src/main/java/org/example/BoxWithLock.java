@@ -85,8 +85,20 @@ private final double diff=10;
         lid();
         topMount=csg.translate3DZ(height+30).transform(topMount);
         topMount=csg.translate3DY(-width/2).transform(topMount);
-        
-        return csg.union3D(lid(),topMount);
+
+        Geometry3D hangingmount=csg.box3D(diff*3,diff,diff*2,false);
+        hangingmount=csg.translate3DZ(height+diff*2).transform(hangingmount);
+        hangingmount=csg.translate3DY(-width+diff*3).transform(hangingmount);
+
+
+        Geometry3D cirLock = csg.cylinder3D(diameter*3,diff/2,128,false);
+        Geometry3D hole=csg.cylinder3D((diameter*3)/1.3,diff,128,false);
+        Geometry3D mount = csg.difference3D(cirLock,hole);
+        mount = csg.rotate3DY(csg.degrees(90)).transform(mount);
+        mount = csg.translate3DZ(height/1.3).transform(mount);
+        mount = csg.translate3DY(-width+15).transform(mount);
+
+        return csg.union3D(lid(),topMount,hangingmount,mount);
     }
 
 
