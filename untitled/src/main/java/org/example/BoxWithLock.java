@@ -1,11 +1,13 @@
-/*package org.example;
+package org.example;
 
-import org.abstractica.javacsg.*;
+import org.abstractica.javacsg.Geometry3D;
+import org.abstractica.javacsg.JavaCSG;
+import org.abstractica.javacsg.JavaCSGFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Kasse {
+public class BoxWithLock {
 private double height;
 private double width;
 private double length;
@@ -16,7 +18,7 @@ private final double diff=10;
     JavaCSG csg= JavaCSGFactory.createNoCaching();
 
 
-    public Kasse(double height, double width, double length){
+    public BoxWithLock(double height, double width, double length){
     this.height = height;
     this.width = width;
     this.length = length;
@@ -45,6 +47,7 @@ private final double diff=10;
             cyl.add(cyls);
         }
 
+
           return csg.union3D(cyl);
 
 
@@ -56,15 +59,38 @@ private final double diff=10;
         Geometry3D innerBox = csg.box3D(length,width,height,false);
         Geometry3D outerBox=csg.box3D(length+diff,width+diff,height,false);
         Geometry3D base = csg.translate3DZ(diff).transform(innerBox);
+
+
         Geometry3D cutbox=csg.difference3D(outerBox,base);
+
         return csg.union3D(cutbox);
     }
+    public Geometry3D lid(){
+
+        Geometry3D holeInTheSide=csg.box3D(length,width,diff/2,false);
+        holeInTheSide=csg.translate3DZ(height).transform(holeInTheSide);
+        Geometry3D holeinouterBox=csg.box3D(length+diff,width+diff,diff/2,false);
+        holeinouterBox=csg.translate3DZ(height+diff/2).transform(holeinouterBox);
+        Geometry3D circle=csg.cylinder3D(diameter*3,diff/2,128,false);
+        Geometry3D hole=csg.cylinder3D((diameter*3)/1.3,diff,128,false);
+        Geometry3D handle = csg.difference3D(circle,hole);
+        handle=csg.rotate3DX(csg.degrees(90)).transform(handle);
+        handle=csg.translate3DZ(height+diff).transform(handle);
+        handle=csg.translate3DY(length/length+diff/4).transform(handle);
+        Geometry3D lid = csg.union3D(holeInTheSide,holeinouterBox,handle);
+        return lid = csg.translate3DZ(25).transform(lid);
+    }
+    public Geometry3D lock(){
+
+        
+    }
+
+
 
     public Geometry3D display(){
         Geometry3D removehole=csg.difference3D(box(),holesinthWall());
-        return csg.union3D(removehole);
+        return csg.union3D(removehole,lid());
     }
 
 
 }
-*/
