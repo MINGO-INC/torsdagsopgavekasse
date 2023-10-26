@@ -12,9 +12,12 @@ public class Main {
        // csg.view(kasse.holesinthWall());
         //csg.view(kasse.display());
 
-        BoxWithBox box=new BoxWithBox(100,80,130);
+        //BoxWithBox box=new BoxWithBox(100,80,130);
 
-        csg.view(box.display());
+       // csg.view(box.display());
+
+        BoxWithLock boxWithLock=new BoxWithLock(100,80,130);
+        csg.view(boxWithLock.display());
 
 
 

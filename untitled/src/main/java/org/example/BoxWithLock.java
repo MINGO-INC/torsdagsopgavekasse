@@ -81,15 +81,18 @@ private final double diff=10;
         return lid = csg.translate3DZ(25).transform(lid);
     }
     public Geometry3D lock(){
-
-        
+        Geometry3D topMount = csg.box3D(diff*2,diff,diff,false);
+        lid();
+        topMount=csg.translate3DZ(height).transform(topMount);
+        //topMount=csg.rotate3DY(csg.degrees(90)).transform(topMount);
+        return csg.union3D(lid(),topMount);
     }
 
 
 
     public Geometry3D display(){
         Geometry3D removehole=csg.difference3D(box(),holesinthWall());
-        return csg.union3D(removehole,lid());
+        return csg.union3D(removehole,lock());
     }
 
 

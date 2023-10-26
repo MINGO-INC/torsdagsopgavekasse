@@ -181,54 +181,67 @@ union()
             }
         }
     }
-    translate([0.0, 0.0, 25.0])
+    union()
     {
-        union()
+        translate([0.0, 0.0, 25.0])
         {
-            translate([0.0, 0.0, 100.0])
+            union()
             {
-                linear_extrude(height = 5.0, twist = 0.0, scale = 1.0, slices = 1, center = false)
+                translate([0.0, 0.0, 100.0])
                 {
-                    scale([130.0, 80.0])
+                    linear_extrude(height = 5.0, twist = 0.0, scale = 1.0, slices = 1, center = false)
                     {
-                        M8();
-                    }
-                }
-            }
-            translate([0.0, 0.0, 105.0])
-            {
-                linear_extrude(height = 5.0, twist = 0.0, scale = 1.0, slices = 1, center = false)
-                {
-                    scale([140.0, 90.0])
-                    {
-                        M8();
-                    }
-                }
-            }
-            translate([0.0, 3.5, 0.0])
-            {
-                translate([0.0, 0.0, 110.0])
-                {
-                    rotate([90.0, 0.0, 0.0])
-                    {
-                        difference()
+                        scale([130.0, 80.0])
                         {
-                            linear_extrude(height = 5.0, twist = 0.0, scale = 1.0, slices = 1, center = false)
+                            M8();
+                        }
+                    }
+                }
+                translate([0.0, 0.0, 105.0])
+                {
+                    linear_extrude(height = 5.0, twist = 0.0, scale = 1.0, slices = 1, center = false)
+                    {
+                        scale([140.0, 90.0])
+                        {
+                            M8();
+                        }
+                    }
+                }
+                translate([0.0, 3.5, 0.0])
+                {
+                    translate([0.0, 0.0, 110.0])
+                    {
+                        rotate([90.0, 0.0, 0.0])
+                        {
+                            difference()
                             {
-                                scale([24.0, 24.0])
+                                linear_extrude(height = 5.0, twist = 0.0, scale = 1.0, slices = 1, center = false)
                                 {
-                                    M245();
+                                    scale([24.0, 24.0])
+                                    {
+                                        M245();
+                                    }
                                 }
-                            }
-                            linear_extrude(height = 10.0, twist = 0.0, scale = 1.0, slices = 1, center = false)
-                            {
-                                scale([18.46153846153846, 18.46153846153846])
+                                linear_extrude(height = 10.0, twist = 0.0, scale = 1.0, slices = 1, center = false)
                                 {
-                                    M245();
+                                    scale([18.46153846153846, 18.46153846153846])
+                                    {
+                                        M245();
+                                    }
                                 }
                             }
                         }
                     }
+                }
+            }
+        }
+        translate([0.0, 0.0, 100.0])
+        {
+            linear_extrude(height = 10.0, twist = 0.0, scale = 1.0, slices = 1, center = false)
+            {
+                scale([20.0, 10.0])
+                {
+                    M8();
                 }
             }
         }
