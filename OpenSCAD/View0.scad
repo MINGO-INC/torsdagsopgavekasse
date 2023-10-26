@@ -235,13 +235,16 @@ union()
                 }
             }
         }
-        translate([0.0, 0.0, 100.0])
+        translate([0.0, -40.0, 0.0])
         {
-            linear_extrude(height = 10.0, twist = 0.0, scale = 1.0, slices = 1, center = false)
+            translate([0.0, 0.0, 130.0])
             {
-                scale([20.0, 10.0])
+                linear_extrude(height = 10.0, twist = 0.0, scale = 1.0, slices = 1, center = false)
                 {
-                    M8();
+                    scale([20.0, 15.0])
+                    {
+                        M8();
+                    }
                 }
             }
         }

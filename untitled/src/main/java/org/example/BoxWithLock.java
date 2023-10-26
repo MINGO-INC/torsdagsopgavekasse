@@ -81,10 +81,11 @@ private final double diff=10;
         return lid = csg.translate3DZ(25).transform(lid);
     }
     public Geometry3D lock(){
-        Geometry3D topMount = csg.box3D(diff*2,diff,diff,false);
+        Geometry3D topMount = csg.box3D(diff*2,diff*1.5,diff,false);
         lid();
-        topMount=csg.translate3DZ(height).transform(topMount);
-        //topMount=csg.rotate3DY(csg.degrees(90)).transform(topMount);
+        topMount=csg.translate3DZ(height+30).transform(topMount);
+        topMount=csg.translate3DY(-width/2).transform(topMount);
+        
         return csg.union3D(lid(),topMount);
     }
 
